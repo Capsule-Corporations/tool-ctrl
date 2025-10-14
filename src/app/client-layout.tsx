@@ -1,5 +1,7 @@
 "use client";
 
+import type React from "react";
+
 import ContextMenu from "@/component/menu/ContextMenu";
 import Navbar from "@/component/navbar";
 import PageTransition from "@/transition/PageTransition";
@@ -18,7 +20,7 @@ export default function ClientLayout({
     useEffect(() => {
         const update = (time: number) => {
             if (lenisRef.current?.lenis) {
-                lenisRef.current.lenis.raf(time * 1000);
+                lenisRef.current.lenis.raf(time * 800);
             }
         };
 
@@ -29,15 +31,14 @@ export default function ClientLayout({
     }, []);
 
     return (
-        <main>
+        <main className="relative">
             {/* <ThemeProvider attribute="class" defaultTheme="system" enableSystem> */}
             <ThemeTransition />
             <PageTransition>
                 <Navbar />
                 <ContextMenu />
                 <ReactLenis root options={{ autoRaf: false }} ref={lenisRef} />
-
-                {children}
+                <div className="relative">{children}</div>
             </PageTransition>
             {/* </ThemeProvider> */}
         </main>
