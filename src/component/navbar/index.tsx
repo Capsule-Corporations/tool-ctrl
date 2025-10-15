@@ -31,7 +31,7 @@ const Navbar = () => {
         const elements = navbarRef.current.querySelectorAll(".nav-text");
 
         gsap.to(navbarRef.current, {
-            border: scrolled ? "solid 1px #00000040" : "solid 1px #ffffff20",
+            border: scrolled ? "solid 1px #FFB87840" : "solid 1px #ffffff20",
             duration: 0.2,
         });
 

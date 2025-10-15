@@ -23,7 +23,7 @@ const Footer = () => {
                 scrollTrigger: {
                     trigger: footerRef.current,
                     start: "top 80%",
-                    end: "bottom bottom",
+                    end: "bottom bottom+=10",
                     toggleActions: "play none none reverse",
                     scrub: 1,
                 },
@@ -34,13 +34,13 @@ const Footer = () => {
     const year = new Date().getFullYear();
 
     return (
-        <div className="text-black relative font-cascadia min-h-[60svh]">
+        <div className="text-[#FF7A29] relative font-cascadia min-h-[60svh]">
             <div className="absolute -top-64">
                 <span className="text-[30rem] tracking-tighter font-bebas">Tool Ctrl</span>
             </div>
             <div
                 ref={footerRef}
-                className="bg-black text-white font-cascadia min-h-[60svh] flex flex-col justify-between p-10 z-10"
+                className="bg-[#FF7A29] text-white font-cascadia min-h-[60svh] flex flex-col justify-between p-10 z-10"
             >
                 <div className="flex gap-20 w-full">
                     <div className="flex gap-20">

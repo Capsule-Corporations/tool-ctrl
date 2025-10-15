@@ -1,5 +1,6 @@
 "use client";
 
+import CountUp from "@/components/CountUp";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
@@ -31,8 +32,18 @@ const HeroFact = () => {
     });
     return (
         <div className="flex justify-center items-center my-10">
-            <div ref={containerRef} className="h-[70svh] w-[90%] bg-[#121212] rounded-4xl p-10">
-                <div>Fact</div>
+            <div ref={containerRef} className="h-[70svh] w-[90%] bg-orange-300 text-[#F5F5F5] rounded-4xl p-10">
+                <div>
+                    <CountUp
+                        from={37000}
+                        to={50000}
+                        separator=","
+                        direction="up"
+                        duration={1}
+                        className="count-up-text text-8xl font-bebas "
+                    />
+                    <span className="text-7xl">+</span>
+                </div>
             </div>
         </div>
     );

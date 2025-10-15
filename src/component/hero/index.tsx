@@ -42,7 +42,7 @@ const HomePage = () => {
         >
             {/* Gradient Background */}
             <div className="absolute inset-0 z-0">
-                <Silk speed={5} scale={1} color="#7B7481" noiseIntensity={1.5} rotation={0} />
+                <Silk speed={5} scale={1} color="#FFB878" noiseIntensity={1.5} rotation={0} />
             </div>
 
             {/* Content */}
@@ -70,7 +70,7 @@ const HomePage = () => {
                         }
                         href="/"
                         variant="1"
-                        className="group flex items-center gap-2 px-8 py-4 text-lg bg-gradient-to-r from-white to-neutral-300 hover:scale-105 font-medium transition-all duration-500"
+                        className="group flex items-center gap-2 px-8 py-4 text-lg bg-gradient-to-r from-white to-neutral-300 hover:scale-105 font-medium transition-all duration-500 text-[#1A1A1A]"
                     />
                 </div>
             </div>
