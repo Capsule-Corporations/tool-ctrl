@@ -15,7 +15,7 @@ const Navbar = () => {
 
     useGSAP(() => {
         const trigger = ScrollTrigger.create({
-            start: "top -=900px",
+            start: "top -=1400px",
             onEnter: () => setScrolled(true),
             onLeaveBack: () => setScrolled(false),
         });
