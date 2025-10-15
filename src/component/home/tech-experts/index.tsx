@@ -222,32 +222,24 @@ export default function TechExpertsAndApps() {
                     ))}
                 </div>
 
-                <div className="mt-12 md:mt-16 grid md:grid-cols-[1fr,1fr] gap-6 items-start">
+                <div className="mt-20 md:mt-16 flex flex-col gap-10 items-start text-[#370617]">
                     <div>
-                        <h3 className="text-xl md:text-2xl font-semibold">We connect to all your apps</h3>
-                        <p className="mt-2 text-muted-foreground leading-relaxed">
+                        <h3 className="text-xl md:text-6xl font-bold tracking-tighter">We connect to all your apps</h3>
+                        <p className="mt-2 text-xl font-medium text-[#370617]/70 leading-relaxed">
                             Plus thousands more through APIs, custom code and web hooks.
                         </p>
-                        <div className="mt-6">
-                            <a
-                                href="#contact"
-                                className="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground px-5 py-2.5 text-sm font-medium"
-                            >
-                                Free Consultation
-                            </a>
-                        </div>
                     </div>
 
                     <LogoLoop
                         logos={imageLogos}
-                        speed={120}
+                        speed={80}
                         direction="left"
-                        logoHeight={48}
+                        logoHeight={58}
                         gap={40}
                         pauseOnHover
                         scaleOnHover
                         fadeOut
-                        fadeOutColor="#ffffff"
+                        fadeOutColor="#fff9f5"
                         ariaLabel="Technology partners"
                     />
                 </div>

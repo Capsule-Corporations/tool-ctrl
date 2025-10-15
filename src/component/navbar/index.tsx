@@ -36,7 +36,7 @@ const Navbar = () => {
         });
 
         gsap.to(elements, {
-            color: scrolled ? "#000" : "#fff",
+            color: scrolled ? "#370617" : "#fff",
             duration: 0.5,
             ease: "power2.out",
         });
@@ -67,7 +67,7 @@ const Navbar = () => {
                     href="/contact"
                     variant={"1"}
                     className={cn(
-                        scrolled ? "bg-black text-white" : "bg-white text-black",
+                        scrolled ? "bg-[#370617] text-white" : "bg-white text-[#370617]",
                         "transition-all duration-300"
                     )}
                 />

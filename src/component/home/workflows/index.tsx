@@ -98,7 +98,7 @@ export default function WorkflowsExamples() {
                             <div className="flex items-start justify-between text-[#370617]">
                                 <h3 className="font-bold tracking-tighter text-5xl">{title}</h3>
                             </div>
-                            <p className="text-xl font-cascadia text-[#908881] mt-3 leading-relaxed">
+                            <p className="text-xl font-helvetica font-medium text-[#370617]/70 mt-3 leading-relaxed">
                                 Minimal example to illustrate a workflow card.
                             </p>
                             <div className="mt-6">
