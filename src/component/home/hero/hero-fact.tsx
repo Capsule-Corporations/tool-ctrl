@@ -41,7 +41,7 @@ const HeroFact = () => {
             containerRef.current,
             {
                 scale: 0.4,
-                marginTop: "-20rem",
+                marginTop: "-30rem",
             },
             {
                 scale: 1,
@@ -58,8 +58,8 @@ const HeroFact = () => {
         gsap.fromTo(
             titleRef.current,
             {
-                scale: 3,
-                translateX: 1900,
+                scale: 2,
+                translateX: 1200,
                 translateY: 200,
             },
             {
@@ -77,10 +77,10 @@ const HeroFact = () => {
     });
 
     return (
-        <div className="flex justify-center items-center my-10">
+        <div className="flex justify-center items-center my-20">
             <div
                 ref={containerRef}
-                className="h-[70svh] w-[90%] bg-[#2F2317] text-[#F5F5F5] rounded-4xl p-10 flex flex-col justify-between overflow-hidden relative"
+                className="h-[90svh] w-[90%] bg-[#2F2317] text-[#F5F5F5] rounded-4xl p-10 flex flex-col justify-between overflow-hidden relative"
             >
                 <div className="flex flex-col" ref={titleRef}>
                     <div>
@@ -90,11 +90,11 @@ const HeroFact = () => {
                             separator=","
                             direction="up"
                             duration={1}
-                            className="count-up-text text-8xl font-bebas "
+                            className="count-up-text text-9xl font-bebas "
                         />
-                        <span className="text-7xl">+</span>
+                        <span className="text-8xl">+</span>
                     </div>
-                    <div className="text-3xl">
+                    <div className="text-4xl">
                         <span>
                             Hours of Manual Work <br /> Replaced
                         </span>
@@ -123,8 +123,8 @@ const FactCards = () => {
                         ease: "power3.out",
                         scrollTrigger: {
                             trigger: card,
-                            start: `top+=${i * 100} 100%`,
-                            end: "top 60%",
+                            start: `top+=${i * 100} 60%`,
+                            end: "top 0%",
                             scrub: 1,
                         },
                     }

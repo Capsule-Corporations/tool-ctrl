@@ -4,7 +4,7 @@ import Silk from "@/components/Silk";
 import gsap from "gsap";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useRef } from "react";
-import Button from "../common/button";
+import Button from "../../common/button";
 
 const HomePage = () => {
     const sectionRef = useRef<HTMLDivElement | null>(null);
