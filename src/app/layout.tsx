@@ -9,9 +9,51 @@ import {
     Poppins,
     Rubik,
 } from "next/font/google";
+import localFont from "next/font/local";
 import ClientLayout from "./client-layout";
 import "./globals.css";
 
+// Local Fonts
+const helvetica = localFont({
+    src: [
+        {
+            path: "./fonts/Helvetica.ttf",
+            weight: "400",
+            style: "normal",
+        },
+        {
+            path: "./fonts/Helvetica-Bold.ttf",
+            weight: "700",
+            style: "normal",
+        },
+        {
+            path: "./fonts/Helvetica-Compressed.otf",
+            weight: "600",
+            style: "normal",
+        },
+    ],
+    variable: "--font-helvetica",
+    display: "swap",
+});
+
+const helveticaNeue = localFont({
+    src: [
+        {
+            path: "./fonts/HelveticaNeueMedium.otf",
+            weight: "500",
+            style: "normal",
+        },
+        {
+            path: "./fonts/HelveticaNeueBold.otf",
+            weight: "700",
+            style: "normal",
+        },
+    ],
+    variable: "--font-helvetica-neue",
+    display: "swap",
+});
+
+// Google Fonts
 const geistSans = Geist({
     variable: "--font-geist-sans",
     subsets: ["latin"],
@@ -24,26 +66,14 @@ const geistMono = Geist_Mono({
 
 const poppins = Poppins({
     variable: "--font-poppins",
-    weight: [
-        "100", // Thin
-        "200", // Extra Light
-        "300", // Light
-        "400", // Regular
-        "500", // Medium
-        "600", // Semi Bold
-        "700", // Bold
-        "800", // Extra Bold
-        "900", // Black
-    ],
+    weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
     style: ["normal", "italic"],
     subsets: ["latin"],
 });
 
 const bebasNeue = Bebas_Neue({
     variable: "--font-bebas",
-    weight: [
-        "400", // Regular
-    ],
+    weight: ["400"],
     style: ["normal"],
     subsets: ["latin"],
 });
@@ -81,7 +111,21 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body
-                className={`${geistSans.variable} ${geistMono.variable} ${jetBrainsMono.variable} ${rubik.variable} ${poppins.variable} ${bebasNeue.variable} ${cascadia.variable} ${cascadiaMono.variable} bg-background text-foreground transition-colors duration-500 font-poppins tracking-tighter font-medium`}
+                className={`
+                    ${geistSans.variable}
+                    ${geistMono.variable}
+                    ${jetBrainsMono.variable}
+                    ${rubik.variable}
+                    ${poppins.variable}
+                    ${bebasNeue.variable}
+                    ${cascadia.variable}
+                    ${cascadiaMono.variable}
+                    ${helvetica.variable}
+                    ${helveticaNeue.variable}
+                    bg-background text-foreground
+                    transition-colors duration-500
+                    font-helvetica-neue tracking-tighter font-bold
+                `}
             >
                 <ClientLayout>{children}</ClientLayout>
             </body>

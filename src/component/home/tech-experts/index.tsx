@@ -1,8 +1,10 @@
 "use client";
 
+import LogoLoop from "@/components/LogoLoop";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { SiNextdotjs, SiReact, SiTailwindcss, SiTypescript } from "react-icons/si";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,7 +18,76 @@ const BRANDS: Brand[] = [
     { name: "Python", blurb: "Custom code to automate advanced use cases." },
 ];
 
-const APP_ICONS = Array.from({ length: 30 }).map((_, i) => `app-${i + 1}`);
+const techLogos = [
+    { node: <SiReact />, title: "React", href: "https://react.dev" },
+    { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
+    { node: <SiTypescript />, title: "TypeScript", href: "https://www.typescriptlang.org" },
+    { node: <SiTailwindcss />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
+];
+
+// Alternative with image sources
+const imageLogos = [
+    {
+        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/2560px-Gmail_icon_%282020%29.svg.png",
+        alt: "Gmail",
+        href: "https://gmail.com",
+    },
+    {
+        src: "https://image.pngaaa.com/530/4775530-middle.png",
+        alt: "Zoom",
+        href: "https://company2.com",
+    },
+    {
+        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/2295px-Google_Drive_icon_%282020%29.svg.png",
+        alt: "Drive",
+        href: "https://company3.com",
+    },
+    {
+        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Microsoft_Office_Teams_%282018%E2%80%93present%29.svg/1200px-Microsoft_Office_Teams_%282018%E2%80%93present%29.svg.png",
+        alt: "Teams",
+        href: "https://company3.com",
+    },
+    {
+        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Microsoft_Excel_2013-2019_logo.svg/1085px-Microsoft_Excel_2013-2019_logo.svg.png",
+        alt: "Excel",
+        href: "https://company3.com",
+    },
+    {
+        src: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/discord-square-color-icon.png",
+        alt: "Discord",
+        href: "https://company3.com",
+    },
+    {
+        src: "https://cdn-icons-png.flaticon.com/512/825/825500.png",
+        alt: "Shopify",
+        href: "https://company3.com",
+    },
+    {
+        src: "https://logo.svgcdn.com/s/notion-dark-8x.png",
+        alt: "Notion",
+        href: "https://company3.com",
+    },
+    {
+        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Slack_icon_2019.svg/2048px-Slack_icon_2019.svg.png",
+        alt: "Slack",
+        href: "https://company3.com",
+    },
+    {
+        src: "https://cdn.creazilla.com/icons/3253847/google-meet-icon-sm.png",
+        alt: "Meet",
+        href: "https://company3.com",
+    },
+    {
+        src: "https://toppng.com/uploads/preview/facebook-round-logo-transparent-background-facebook-logo-round-11553547089wdi1nweaao.png",
+        alt: "Facebook",
+        href: "https://company3.com",
+    },
+    {
+        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/1200px-Logo_of_Twitter.svg.png",
+        alt: "Twitter",
+        href: "https://company3.com",
+    },
+];
 
 export default function TechExpertsAndApps() {
     const sectionRef = useRef<HTMLElement | null>(null);
@@ -25,91 +96,91 @@ export default function TechExpertsAndApps() {
     const brandsActivated = useRef(false);
     const appsActivated = useRef(false);
 
-    useEffect(() => {
-        const section = sectionRef.current;
-        if (!section) return;
+    // useEffect(() => {
+    //     const section = sectionRef.current;
+    //     if (!section) return;
 
-        const ctx = gsap.context(() => {
-            const triggers: ScrollTrigger[] = [];
+    //     const ctx = gsap.context(() => {
+    //         const triggers: ScrollTrigger[] = [];
 
-            // Container entrance (light scrub to feel attached to scroll)
-            gsap.fromTo(
-                section,
-                { opacity: 0, y: 60, scale: 0.98 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top bottom-=10%",
-                        end: "top 60%",
-                        scrub: true,
-                        id: "tech-apps-entrance",
-                        onUpdate: self => {
-                            // When container is 60% progressed, start brand tiles (once)
-                            if (!brandsActivated.current && self.progress >= 0.6) {
-                                brandsActivated.current = true;
-                                brandRefs.current.forEach((el, i) => {
-                                    const tr = ScrollTrigger.create({
-                                        trigger: el,
-                                        start: "top 90%",
-                                        end: "top 60%",
-                                        toggleActions: "play none none reverse",
-                                        onEnter: () => {
-                                            gsap.fromTo(
-                                                el,
-                                                { y: 28, opacity: 0 },
-                                                { y: 0, opacity: 1, duration: 0.5, ease: "power2.out", delay: i * 0.05 }
-                                            );
-                                        },
-                                    });
-                                    triggers.push(tr);
-                                });
-                            }
-                            // When container is 90% progressed, start apps wall (once)
-                            if (!appsActivated.current && self.progress >= 0.9) {
-                                appsActivated.current = true;
-                                appRefs.current.forEach((dot, i) => {
-                                    const tr = ScrollTrigger.create({
-                                        trigger: dot,
-                                        start: "top 95%",
-                                        end: "top 70%",
-                                        toggleActions: "play none none reverse",
-                                        onEnter: () => {
-                                            gsap.fromTo(
-                                                dot,
-                                                { y: 16, opacity: 0, scale: 0.9 },
-                                                {
-                                                    y: 0,
-                                                    opacity: 1,
-                                                    scale: 1,
-                                                    duration: 0.4,
-                                                    ease: "power2.out",
-                                                    delay: i * 0.02,
-                                                }
-                                            );
-                                        },
-                                    });
-                                    triggers.push(tr);
-                                });
+    //         // Container entrance (light scrub to feel attached to scroll)
+    //         gsap.fromTo(
+    //             section,
+    //             { opacity: 0, y: 60, scale: 0.98 },
+    //             {
+    //                 opacity: 1,
+    //                 y: 0,
+    //                 scale: 1,
+    //                 ease: "none",
+    //                 scrollTrigger: {
+    //                     trigger: section,
+    //                     start: "top bottom-=10%",
+    //                     end: "top 60%",
+    //                     scrub: true,
+    //                     id: "tech-apps-entrance",
+    //                     onUpdate: self => {
+    //                         // When container is 60% progressed, start brand tiles (once)
+    //                         if (!brandsActivated.current && self.progress >= 0.6) {
+    //                             brandsActivated.current = true;
+    //                             brandRefs.current.forEach((el, i) => {
+    //                                 const tr = ScrollTrigger.create({
+    //                                     trigger: el,
+    //                                     start: "top 90%",
+    //                                     end: "top 60%",
+    //                                     scrub: 1,
+    //                                     onEnter: () => {
+    //                                         gsap.fromTo(
+    //                                             el,
+    //                                             { y: 28, opacity: 0 },
+    //                                             { y: 0, opacity: 1, duration: 0.5, ease: "power2.out", delay: i * 0.05 }
+    //                                         );
+    //                                     },
+    //                                 });
+    //                                 triggers.push(tr);
+    //                             });
+    //                         }
+    //                         // When container is 90% progressed, start apps wall (once)
+    //                         if (!appsActivated.current && self.progress >= 0.9) {
+    //                             appsActivated.current = true;
+    //                             appRefs.current.forEach((dot, i) => {
+    //                                 const tr = ScrollTrigger.create({
+    //                                     trigger: dot,
+    //                                     start: "top 95%",
+    //                                     end: "top 70%",
+    //                                     toggleActions: "play none none reverse",
+    //                                     onEnter: () => {
+    //                                         gsap.fromTo(
+    //                                             dot,
+    //                                             { y: 16, opacity: 0, scale: 0.9 },
+    //                                             {
+    //                                                 y: 0,
+    //                                                 opacity: 1,
+    //                                                 scale: 1,
+    //                                                 duration: 0.4,
+    //                                                 ease: "power2.out",
+    //                                                 delay: i * 0.02,
+    //                                             }
+    //                                         );
+    //                                     },
+    //                                 });
+    //                                 triggers.push(tr);
+    //                             });
 
-                                // Recompute layout once dots begin revealing
-                                ScrollTrigger.refresh();
-                            }
-                        },
-                    },
-                }
-            );
+    //                             // Recompute layout once dots begin revealing
+    //                             ScrollTrigger.refresh();
+    //                         }
+    //                     },
+    //                 },
+    //             }
+    //         );
 
-            return () => {
-                triggers.forEach(t => t.kill());
-            };
-        }, section);
+    //         return () => {
+    //             triggers.forEach(t => t.kill());
+    //         };
+    //     }, section);
 
-        return () => ctx.revert();
-    }, []);
+    //     return () => ctx.revert();
+    // }, []);
 
     return (
         <section
@@ -167,20 +238,18 @@ export default function TechExpertsAndApps() {
                         </div>
                     </div>
 
-                    <div className="rounded-xl border border-border p-5 md:p-6">
-                        <div className="grid grid-cols-6 sm:grid-cols-8 gap-3">
-                            {APP_ICONS.map((id, i) => (
-                                <span
-                                    key={id}
-                                    ref={el => {
-                                        el && (appRefs.current[i] = el);
-                                    }}
-                                    className="h-9 w-9 rounded-md bg-muted ring-1 ring-border inline-block"
-                                    aria-label={`App icon ${i + 1}`}
-                                />
-                            ))}
-                        </div>
-                    </div>
+                    <LogoLoop
+                        logos={imageLogos}
+                        speed={120}
+                        direction="left"
+                        logoHeight={48}
+                        gap={40}
+                        pauseOnHover
+                        scaleOnHover
+                        fadeOut
+                        fadeOutColor="#ffffff"
+                        ariaLabel="Technology partners"
+                    />
                 </div>
             </div>
         </section>

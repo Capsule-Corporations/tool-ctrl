@@ -16,7 +16,7 @@ const Home = () => {
             <UseCasesGrid />
             <TechExpertsAndApps />
             <WorkflowsExamples />
-            <div className="min-h-screen"></div>
+            <div className="min-h-[20svh]"></div>
             <Footer />
         </div>
     );
