@@ -3,7 +3,6 @@
 import type React from "react";
 
 import ContextMenu from "@/component/menu/ContextMenu";
-import Navbar from "@/component/navbar";
 import PageTransition from "@/transition/PageTransition";
 import ThemeTransition from "@/transition/ThemeTransition";
 import gsap from "gsap";
@@ -35,7 +34,9 @@ export default function ClientLayout({
             {/* <ThemeProvider attribute="class" defaultTheme="system" enableSystem> */}
             <ThemeTransition />
             <PageTransition>
-                <Navbar />
+                {/* <div className="">
+                    <Navbar />
+                </div> */}
                 <ContextMenu />
                 <ReactLenis root options={{ autoRaf: false }} ref={lenisRef} />
                 <div className="relative">{children}</div>

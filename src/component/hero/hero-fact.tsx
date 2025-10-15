@@ -31,7 +31,7 @@ const HeroFact = () => {
     });
     return (
         <div className="flex justify-center items-center my-10">
-            <div ref={containerRef} className="h-[50svh] w-[90%] bg-blue-300 rounded-4xl p-10">
+            <div ref={containerRef} className="h-[70svh] w-[90%] bg-[#121212] rounded-4xl p-10">
                 <div>Fact</div>
             </div>
         </div>
