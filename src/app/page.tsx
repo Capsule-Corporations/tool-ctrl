@@ -1,3 +1,4 @@
+import HorizontalScroll from "@/component/common/horizontal-scroll";
 import Footer from "@/component/footer";
 import HomePage from "@/component/home/hero";
 import HeroFact from "@/component/home/hero/hero-fact";
@@ -12,8 +13,13 @@ const Home = () => {
             {/* <Navbar /> */}
             <HomePage />
             <HeroFact />
-            <AgencySteps />
-            <UseCasesGrid />
+            <HorizontalScroll>
+                {[<AgencySteps />, <UseCasesGrid />].map((item, idx) => (
+                    <div key={idx} className="min-w-screen min-h-screen flex justify-center items-center">
+                        {item}
+                    </div>
+                ))}
+            </HorizontalScroll>
             <TechExpertsAndApps />
             <WorkflowsExamples />
             <div className="min-h-[20svh]"></div>

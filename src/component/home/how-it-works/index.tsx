@@ -6,97 +6,52 @@ import { useEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const content = [
+    {
+        title: "Map your processes",
+        description: "Visualize systems, manual tasks, and tools.",
+    },
+    {
+        title: "Find areas to add AI",
+        description: "Pinpoint opportunities with the highest ROI.",
+    },
+    {
+        title: "Build and Test",
+        description: "Use custom code and tools to validate.",
+    },
+    {
+        title: "Manage & Interact",
+        description: "Continual improvement as your needs evolve.",
+    },
+];
+
 export default function AgencySteps() {
     const sectionRef = useRef<HTMLElement | null>(null);
-    const hasActivatedCardsRef = useRef(false);
 
     useEffect(() => {
         const section = sectionRef.current;
         if (!section) return;
 
+        const cards = section.querySelectorAll<HTMLElement>(".step-card");
+
         const ctx = gsap.context(() => {
-            const createdTriggers: ScrollTrigger[] = [];
-            let pinTrigger: ScrollTrigger | null = null;
-
-            // Pin the section initially; we'll remove it at 90% entrance progress.
-            pinTrigger = ScrollTrigger.create({
-                trigger: section,
-                start: "top top+=120",
-                end: "+=120%",
-                pin: true,
-                pinSpacing: true,
-                anticipatePin: 1,
-                id: "agency-steps-pin",
-            });
-
-            const initCardTriggers = () => {
-                if (hasActivatedCardsRef.current) return;
-                hasActivatedCardsRef.current = true;
-
-                const cards = Array.from(section.querySelectorAll<HTMLElement>(".step-card"));
-                cards.forEach((card, i) => {
-                    // One-by-one on scroll
-                    const tr = ScrollTrigger.create({
-                        trigger: card,
-                        start: "top 85%",
-                        end: "top 45%",
-                        toggleActions: "play none none reverse",
-                        onEnter: () => {
-                            gsap.fromTo(
-                                card,
-                                { y: 32, opacity: 0, scale: 0.98 },
-                                {
-                                    y: 0,
-                                    opacity: 1,
-                                    scale: 1,
-                                    duration: 0.6,
-                                    ease: "power2.out",
-                                    delay: i * 0.08, // subtle stagger per element index
-                                }
-                            );
-                        },
-                    });
-                    createdTriggers.push(tr);
-                });
-
-                // Remove the pin so subsequent scrolling feels natural
-                if (pinTrigger) {
-                    pinTrigger.kill(true);
-                    pinTrigger = null;
-                }
-
-                // Recalculate after pin removal
-                ScrollTrigger.refresh();
-            };
-
-            // Container entrance (scale+translate). Cards only activate at 90% progress.
             gsap.fromTo(
-                section,
-                { opacity: 0, y: 80, scale: 0.96 },
+                cards,
+                { y: -100, opacity: 0 },
                 {
-                    opacity: 1,
                     y: 0,
-                    scale: 1,
-                    ease: "none",
+                    opacity: 1,
+                    duration: 0.8,
+                    ease: "power3.out",
+                    stagger: 0.2,
                     scrollTrigger: {
                         trigger: section,
-                        start: "top bottom-=10%",
-                        end: "top center",
-                        scrub: true,
-                        id: "agency-steps-entrance",
-                        onUpdate: self => {
-                            if (!hasActivatedCardsRef.current && self.progress >= 0.9) {
-                                initCardTriggers();
-                            }
-                        },
+                        start: "top 80%",
+                        end: "bottom 60%",
+                        scrub: 1,
                     },
                 }
             );
-
-            return () => {
-                createdTriggers.forEach(t => t.kill());
-                if (pinTrigger) pinTrigger.kill();
-            };
         }, section);
 
         return () => ctx.revert();
@@ -105,58 +60,41 @@ export default function AgencySteps() {
     return (
         <section
             ref={sectionRef}
-            className="bg-background text-foreground py-16 md:py-24"
+            className="bg-background text-[#370617] py-16 md:py-24 min-w-screen"
             aria-labelledby="agency-steps-heading"
         >
-            <div className="container mx-auto max-w-6xl px-6 md:px-8">
-                <header className="text-center mb-10 md:mb-14">
-                    <h2 id="agency-steps-heading" className="text-pretty text-2xl md:text-4xl font-semibold">
-                        How our <span className="text-primary">AI</span> and{" "}
-                        <span className="text-primary">Automation</span> agency works
-                    </h2>
-                    <p className="mt-3 md:mt-4 text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+            <div className="mx-auto px-6 md:px-28">
+                {/* HEADER */}
+                <header className="text-start flex flex-col mb-10 md:mb-14">
+                    <div className="flex items-center gap-5">
+                        <h2
+                            id="agency-steps-heading"
+                            className="text-nowrap text-2xl md:text-4xl lg:text-9xl font-semibold font-helvetica flex-1"
+                        >
+                            Our Workflow
+                        </h2>
+                        <div className="flex flex-col gap-0.5 w-full">
+                            <div className="w-full h-1 bg-[#370617]"></div>
+                            <div className="w-full h-1 bg-[#370617]"></div>
+                        </div>
+                    </div>
+                    <p className="mt-3 md:mt-4 text-[#370617]/80 text-2xl font-helvetica-neue tracking-tighter">
                         We map, analyze, build, and iterate to unlock compounding efficiency.
                     </p>
                 </header>
 
-                <ol className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                    <li className="step-card rounded-lg border border-border p-5 md:p-6">
-                        <div className="text-primary mb-2 font-medium">STEP 1</div>
-                        <h3 className="font-semibold">Map your processes</h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed mt-2">
-                            Visualize systems, manual tasks, and tools.
-                        </p>
-                    </li>
-                    <li className="step-card rounded-lg border border-border p-5 md:p-6">
-                        <div className="text-primary mb-2 font-medium">STEP 2</div>
-                        <h3 className="font-semibold">Find areas to add AI</h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed mt-2">
-                            Pinpoint opportunities with the highest ROI.
-                        </p>
-                    </li>
-                    <li className="step-card rounded-lg border border-border p-5 md:p-6">
-                        <div className="text-primary mb-2 font-medium">STEP 3</div>
-                        <h3 className="font-semibold">Build and test</h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed mt-2">
-                            Use custom code and tools to validate.
-                        </p>
-                    </li>
-                    <li className="step-card rounded-lg border border-border p-5 md:p-6">
-                        <div className="text-primary mb-2 font-medium">STEP 4</div>
-                        <h3 className="font-semibold">Manage and iterate</h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed mt-2">
-                            Continual improvement as your needs evolve.
-                        </p>
-                    </li>
-                </ol>
-
-                <div className="mt-8 md:mt-10 flex justify-center">
-                    <a
-                        href="#contact"
-                        className="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground px-5 py-2.5 text-sm font-medium"
-                    >
-                        Free Consultation
-                    </a>
+                {/* DYNAMIC STEP CARDS */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 mt-10">
+                    {content.map((item, index) => (
+                        <div
+                            key={index}
+                            className="step-card bg-[#FDF5DC] rounded-lg border border-[#370617]/50 h-80 p-5 md:p-6 opacity-0"
+                        >
+                            <div className="mb-2 text-xl font-medium">Step {index + 1}</div>
+                            <h3 className="font-semibold text-4xl text-pretty">{item.title}</h3>
+                            <p className="text-[#370617]/70 text-lg leading-relaxed mt-2">{item.description}</p>
+                        </div>
+                    ))}
                 </div>
             </div>
         </section>
