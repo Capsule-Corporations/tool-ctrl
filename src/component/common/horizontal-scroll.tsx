@@ -13,11 +13,7 @@ interface HorizontalScrollProps {
     className?: string;
 }
 
-export default function HorizontalScroll({
-    children,
-    gap = "0rem", // 0 because we'll assume full 100vw panels
-    className = "",
-}: HorizontalScrollProps) {
+export default function HorizontalScroll({ children, gap = "0rem", className = "" }: HorizontalScrollProps) {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const horizontalRef = useRef<HTMLDivElement | null>(null);
 
@@ -30,7 +26,6 @@ export default function HorizontalScroll({
         const sections = gsap.utils.toArray<HTMLElement>(horizontal.children);
         if (!sections.length) return;
 
-        // Each child takes 100vw → total scroll distance is 100 * (n - 1)
         gsap.to(horizontal, {
             xPercent: -100 * (sections.length - 1),
             ease: "none",

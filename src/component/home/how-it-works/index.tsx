@@ -1,8 +1,9 @@
 "use client";
 
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,7 +29,7 @@ const content = [
 export default function AgencySteps() {
     const sectionRef = useRef<HTMLElement | null>(null);
 
-    useEffect(() => {
+    useGSAP(() => {
         const section = sectionRef.current;
         if (!section) return;
 
@@ -47,7 +48,7 @@ export default function AgencySteps() {
                     scrollTrigger: {
                         trigger: section,
                         start: "top 80%",
-                        end: "bottom 60%",
+                        end: "bottom 40%",
                         scrub: 1,
                     },
                 }
@@ -60,7 +61,7 @@ export default function AgencySteps() {
     return (
         <section
             ref={sectionRef}
-            className="bg-background text-[#370617] py-16 md:py-24 min-w-screen"
+            className="bg-background text-[#2F2317] py-16 md:py-24 min-w-screen"
             aria-labelledby="agency-steps-heading"
         >
             <div className="mx-auto px-6 md:px-28">
@@ -74,11 +75,11 @@ export default function AgencySteps() {
                             Our Workflow
                         </h2>
                         <div className="flex flex-col gap-0.5 w-full">
-                            <div className="w-full h-1 bg-[#370617]"></div>
-                            <div className="w-full h-1 bg-[#370617]"></div>
+                            <div className="w-full h-1 bg-[#2F2317]"></div>
+                            <div className="w-full h-1 bg-[#2F2317]"></div>
                         </div>
                     </div>
-                    <p className="mt-3 md:mt-4 text-[#370617]/80 text-2xl font-helvetica-neue tracking-tighter">
+                    <p className="mt-3 md:mt-4 text-[#2F2317]/80 text-2xl font-helvetica-neue tracking-tighter">
                         We map, analyze, build, and iterate to unlock compounding efficiency.
                     </p>
                 </header>
@@ -88,11 +89,11 @@ export default function AgencySteps() {
                     {content.map((item, index) => (
                         <div
                             key={index}
-                            className="step-card bg-[#FDF5DC] rounded-lg border border-[#370617]/50 h-80 p-5 md:p-6 opacity-0"
+                            className="step-card bg-[#FDF5DC] rounded-lg border border-[#2F2317]/50 h-80 p-5 md:p-6 opacity-0"
                         >
                             <div className="mb-2 text-xl font-medium">Step {index + 1}</div>
                             <h3 className="font-semibold text-4xl text-pretty">{item.title}</h3>
-                            <p className="text-[#370617]/70 text-lg leading-relaxed mt-2">{item.description}</p>
+                            <p className="text-[#2F2317]/70 text-lg leading-relaxed mt-2">{item.description}</p>
                         </div>
                     ))}
                 </div>

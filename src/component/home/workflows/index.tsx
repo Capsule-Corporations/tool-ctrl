@@ -1,9 +1,10 @@
 "use client";
 
 import Button from "@/component/common/button";
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,7 +21,7 @@ export default function WorkflowsExamples() {
     const sectionRef = useRef<HTMLElement | null>(null);
     const cardRefs = useRef<HTMLElement[]>([]);
 
-    useEffect(() => {
+    useGSAP(() => {
         const section = sectionRef.current;
         if (!section) return;
 
@@ -95,10 +96,10 @@ export default function WorkflowsExamples() {
                             }}
                             className="rounded-2xl border border-border p-6 md:p-8 bg-[#FEFAE0] h-[25rem] w-full shadow-sm hover:shadow-md transition-shadow duration-300 font-helvetica-neue"
                         >
-                            <div className="flex items-start justify-between text-[#370617]">
+                            <div className="flex items-start justify-between text-[#2F2317]">
                                 <h3 className="font-bold tracking-tighter text-5xl">{title}</h3>
                             </div>
-                            <p className="text-xl font-helvetica font-medium text-[#370617]/70 mt-3 leading-relaxed">
+                            <p className="text-xl font-helvetica font-medium text-[#2F2317]/70 mt-3 leading-relaxed">
                                 Minimal example to illustrate a workflow card.
                             </p>
                             <div className="mt-6">

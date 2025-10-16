@@ -41,7 +41,7 @@ const HeroFact = () => {
             containerRef.current,
             {
                 scale: 0.4,
-                marginTop: "-30rem",
+                marginTop: "-70rem",
             },
             {
                 scale: 1,
@@ -49,7 +49,7 @@ const HeroFact = () => {
                 scrollTrigger: {
                     trigger: containerRef.current,
                     start: "top 80%",
-                    end: "bottom 20%",
+                    end: "top 20%",
                     scrub: 1,
                 },
             }
@@ -77,7 +77,7 @@ const HeroFact = () => {
     });
 
     return (
-        <div className="flex justify-center items-center my-20">
+        <div className="flex min-h-[90svh] justify-center items-center my-20">
             <div
                 ref={containerRef}
                 className="h-[90svh] w-[90%] bg-[#2F2317] text-[#F5F5F5] rounded-4xl p-10 flex flex-col justify-between overflow-hidden relative"

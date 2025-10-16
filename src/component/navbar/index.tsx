@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import Button from "../common/button";
 
@@ -49,7 +50,16 @@ const Navbar = () => {
                        bg-transparent backdrop-blur-md border border-white/20 rounded-2xl p-7 m-2 transition-all duration-500"
         >
             {/* Logo */}
-            <div className="text-2xl font-medium font-rubik nav-text">LOGO</div>
+            <div className="h-20 w-20 nav-text">
+                <div className="relative h-full w-full">
+                    <Image
+                        fill
+                        src={"/logo.png"}
+                        alt="logo"
+                        className={cn("object-contain", scrolled ? "invert-0" : "invert-100")}
+                    />
+                </div>
+            </div>
 
             {/* Menu Items */}
             <div className="flex gap-5 font-jetbrains-mono">
