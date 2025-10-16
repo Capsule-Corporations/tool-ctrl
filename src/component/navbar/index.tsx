@@ -1,5 +1,6 @@
 "use client";
 
+import { useWindow } from "@/hooks/useWindow";
 import { cn } from "@/lib/utils";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -13,6 +14,8 @@ gsap.registerPlugin(ScrollTrigger);
 const Navbar = () => {
     const navbarRef = useRef<HTMLDivElement | null>(null);
     const [scrolled, setScrolled] = useState(false);
+
+    const { height, width } = useWindow();
 
     useGSAP(() => {
         const trigger = ScrollTrigger.create({
@@ -37,7 +40,7 @@ const Navbar = () => {
         });
 
         gsap.to(elements, {
-            color: scrolled ? "#370617" : "#fff",
+            color: scrolled ? "#2F2317" : "#fff",
             duration: 0.5,
             ease: "power2.out",
         });
@@ -77,7 +80,7 @@ const Navbar = () => {
                     href="/contact"
                     variant={"1"}
                     className={cn(
-                        scrolled ? "bg-[#370617] text-white" : "bg-white text-[#370617]",
+                        scrolled ? "bg-[#2F2317] text-white" : "bg-white text-[#2F2317]",
                         "transition-all duration-300"
                     )}
                 />

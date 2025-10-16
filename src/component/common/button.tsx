@@ -36,16 +36,15 @@ const Variant1 = ({ text, icon, iconSide = "right", className = "", href }: Butt
             className={cn(
                 `
                 inline-flex items-center justify-center gap-2
-                px-5 py-3 sm:px-7 sm:py-4
-                text-sm sm:text-base md:text-lg font-medium
-                rounded-2xl hover:rounded-4xl
-                text-black 
-                bg-white 
-                
-                transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
-                hover:scale-[1.03]
-                shadow-md hover:shadow-xl
+                px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-4
+                text-xs sm:text-sm md:text-base lg:text-lg
+                font-medium rounded-2xl hover:rounded-3xl
+                text-black bg-white whitespace-nowrap
+                transition-all duration-300 ease-in-out
+                hover:scale-105 sm:hover:scale-103
+                shadow-sm sm:shadow-md hover:shadow-lg
                 will-change-transform
+                touch-manipulation
                 `,
                 className
             )}
@@ -66,15 +65,15 @@ const Variant2 = ({ text, icon, iconSide = "right", className = "", href }: Butt
             className={cn(
                 `
                 inline-flex items-center justify-center gap-2
-                px-5 py-3 sm:px-7 sm:py-4
-                text-sm sm:text-base md:text-lg font-medium
-                rounded-2xl hover:rounded-4xl
-                text-white
-                bg-black
-                transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
-                hover:scale-[1.03]
-                shadow-md hover:shadow-xl
+                px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-4
+                text-xs sm:text-sm md:text-base lg:text-lg
+                font-medium rounded-2xl hover:rounded-3xl
+                text-white bg-black
+                transition-all duration-300 ease-in-out
+                hover:scale-105 sm:hover:scale-103
+                shadow-sm sm:shadow-md hover:shadow-lg
                 will-change-transform
+                touch-manipulation
                 `,
                 className
             )}

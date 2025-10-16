@@ -1,6 +1,7 @@
 "use client";
 
 import CountUp from "@/components/CountUp";
+import { useWindow } from "@/hooks/useWindow";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
@@ -36,12 +37,14 @@ const HeroFact = () => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const titleRef = useRef<HTMLDivElement | null>(null);
 
+    const { height, width } = useWindow();
+
     useGSAP(() => {
         gsap.fromTo(
             containerRef.current,
             {
                 scale: 0.4,
-                marginTop: "-70rem",
+                marginTop: width >= 1280 ? "-70rem" : width >= 768 ? "-50rem" : "-30rem",
             },
             {
                 scale: 1,
@@ -55,11 +58,23 @@ const HeroFact = () => {
             }
         );
 
+        const maxTranslate = 1200; // for 2K screens
+        const minTranslate = 400; // for smallest screens (~<768)
+        const maxWidth = 2000; // 2K screen width
+        const minWidth = 320; // mobile width
+
+        const translateX =
+            width >= maxWidth
+                ? maxTranslate
+                : width <= minWidth
+                ? minTranslate
+                : ((width - minWidth) / (maxWidth - minWidth)) * (maxTranslate - minTranslate) + minTranslate;
+
         gsap.fromTo(
             titleRef.current,
             {
                 scale: 2,
-                translateX: 1200,
+                translateX,
                 translateY: 200,
             },
             {
